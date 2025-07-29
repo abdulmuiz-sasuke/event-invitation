@@ -2,82 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>You’re Invited!</title>
+  <title>You're Invited!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 30px;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
       background-color: #f0f8ff;
     }
-
-    form {
-      max-width: 500px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #ccc;
+    h1 {
+      color: #333;
     }
-
     label {
       display: block;
-      margin-top: 15px;
+      margin-top: 10px;
+      font-weight: bold;
     }
-
-    input, select {
+    input {
       width: 100%;
-      padding: 10px;
+      padding: 8px;
       margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
-
     button {
       margin-top: 20px;
-      padding: 10px 15px;
-      background-color: darkgreen;
+      padding: 10px 20px;
+      background-color: #007bff;
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
     }
-
-    a.button {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 15px;
-      background-color: #007BFF;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      text-align: center;
+    button:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
+  <h1>Register for Your Ticket</h1>
 
-  <h2 style="text-align:center;">You are Invited!</h2>
+  <label for="name">Your Name:</label>
+  <input type="text" id="name" required>
 
-  <form action="ticket.html" method="get">
-    <label for="fullName">Full Name:</label>
-    <input type="text" id="fullName" name="fullName" required>
+  <label for="health">Health Condition (if any):</label>
+  <input type="text" id="health" placeholder="e.g. Asthma, None">
 
-    <label for="eventType">Event Type:</label>
-    <select id="eventType" name="eventType" required>
-      <option value="wedding">Wedding</option>
-      <option value="party">Party</option>
-      <option value="conference">Conference</option>
-    </select>
+  <button onclick="register()">Register for Ticket</button>
 
-    <label for="health">Health Condition:</label>
-    <input type="text" id="health" name="health" placeholder="e.g. Asthma, None" required>
+  <script>
+    function register() {
+      const name = document.getElementById("name").value;
+      const health = document.getElementById("health").value;
 
-    <label for="date">Date:</label>
-    <input type="date" id="date" name="date" required>
+      // Save to local storage
+      localStorage.setItem("name", name);
+      localStorage.setItem("health", health);
 
-    <label for="venue">Venue:</label>
-    <input type="text" id="venue" name="venue" required>
-
-    <button type="submit">Register for Ticket</button>
-  </form>
-
+      // Redirect to ticket page
+      window.location.href = "ticket.html";
+    }
+  </script>
 </body>
 </html>
+
