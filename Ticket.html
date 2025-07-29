@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Event Ticket</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f8f8;
+      padding: 40px;
+    }
+
+    .ticket {
+      max-width: 600px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 20px;
+      background-color: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .ticket h2 {
+      margin-bottom: 15px;
+    }
+
+    .ticket .details {
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .wedding {
+      border: 5px solid pink;
+    }
+
+    .conference {
+      border: 5px solid steelblue;
+    }
+
+    .party {
+      border: 5px solid orange;
+    }
+
+    .loading {
+      text-align: center;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+<div class="ticket" id="ticketBox">
+  <div class="loading">Loading ticket...</div>
+</div>
+
+<script>
+  function getQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+      fullName: params.get("fullName"),
+      eventType: params.get("eventType"),
+      venue: params.get("venue"),
+      date: params.get("date"),
+      health: params.get("health")
+    };
+  }
+
+  const ticket = getQueryParams();
+  const ticketBox = document.getElementById("ticketBox");
+
+  if (ticket.fullName && ticket.eventType && ticket.venue && ticket.date) {
+    let borderClass = '';
+    if (ticket.eventType === "Wedding") borderClass = 'wedding';
+    else if (ticket.eventType === "Conference") borderClass = 'conference';
+    else if (ticket.eventType === "Party") borderClass = 'party';
+
+    ticketBox.className = ticket ${borderClass};
+    ticketBox.innerHTML = `
+      <h2>Your ${ticket.eventType} Ticket</h2>
+      <p><strong>Name:</strong> ${ticket.fullName}</p>
+      <p><strong>Venue:</strong> ${ticket.venue}</p>
+      <p><strong>Date:</strong> ${ticket.date}</p>
+      <p><strong>Health Condition:</strong> ${ticket.health || 'None'}</p>
+      <p style="margin-top: 20px; font-weight: bold; color: green;">🎟 This ticket has been processed successfully!</p>
+    `;
+  } else {
+    ticketBox.innerHTML = <div class="loading">Ticket details are missing. Go back and register again.</div>;
+  }
+</script>
+
+</body>
+</html>

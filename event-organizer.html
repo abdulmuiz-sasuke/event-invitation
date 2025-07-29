@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Event - Organizer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 30px;
+    }
+
+    form {
+      max-width: 500px;
+      margin: auto;
+      background: #eef;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: navy;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      margin-top: 25px;
+      font-weight: bold;
+      color: darkgreen;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Create New Event</h2>
+  <form>
+    <label for="organizer">Organizer Name:</label>
+    <input type="text" id="organizer" name="organizer" required>
+
+    <label for="eventType">Event Type:</label>
+    <select id="eventType" name="eventType" required>
+      <option value="wedding">Wedding</option>
+      <option value="party">Party</option>
+      <option value="conference">Conference</option>
+    </select>
+
+    <label for="date">Date of Event:</label>
+    <input type="date" id="date" name="date" required>
+
+    <label for="venue">Venue:</label>
+    <input type="text" id="venue" name="venue" required>
+
+    <button type="submit">Save</button>
+  </form>
+
+  <!-- Link to Invite Page -->
+  <a href="invite.html">📨 Share Invitation Page</a>
+
+</body>
+</html>
