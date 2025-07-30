@@ -2,67 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>You're Invited!</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're Invited! - EventEase</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .header {
+      background: linear-gradient(to right, #4CAF50, #81C784);
+      color: white;
       padding: 20px;
-      background-color: #f0f8ff;
     }
-    h1 {
-      color: #333;
+
+    .header img {
+      width: 80px;
     }
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
+
+    .header h1 {
+      margin: 10px 0 0;
     }
-    input {
-      width: 100%;
-      padding: 8px;
+
+    .header p {
+      font-style: italic;
       margin-top: 5px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
     }
+
+    form {
+      margin: 40px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+
     button {
-      margin-top: 20px;
       padding: 10px 20px;
-      background-color: #007bff;
+      background-color: #4CAF50;
       color: white;
       border: none;
-      border-radius: 5px;
       cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
-  <h1>Register for Your Ticket</h1>
 
-  <label for="name">Your Name:</label>
-  <input type="text" id="name" required>
+  <div class="header">
+    <img src="logo.png" alt="EventEase Logo">
+    <h1>EventEase</h1>
+    <p>Your Event, Made Effortless</p>
+  </div>
 
-  <label for="health">Health Condition (if any):</label>
-  <input type="text" id="health" placeholder="e.g. Asthma, None">
+  <form action="ticket.html" method="get">
+    <h2>Register for Ticket</h2>
+    <input type="text" name="fullname" placeholder="Full Name" required><br>
+    <input type="text" name="health" placeholder="Any Health Condition? (optional)"><br>
+    <button type="submit">Get Ticket</button>
+  </form>
 
-  <button onclick="register()">Register for Ticket</button>
-
-  <script>
-    function register() {
-      const name = document.getElementById("name").value;
-      const health = document.getElementById("health").value;
-
-      // Save to local storage
-      localStorage.setItem("name", name);
-      localStorage.setItem("health", health);
-
-      // Redirect to ticket page
-      window.location.href = "ticket.html";
-    }
-  </script>
 </body>
 </html>
-
