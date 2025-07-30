@@ -2,91 +2,92 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Your Event Ticket</title>
+  <title>Your Event Ticket - EventEase</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f8f8f8;
-      padding: 40px;
-    }
-
-    .ticket {
-      max-width: 600px;
-      margin: auto;
-      padding: 30px;
-      border-radius: 20px;
-      background-color: white;
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
       text-align: center;
     }
 
-    .ticket h2 {
-      margin-bottom: 15px;
+    .header {
+      padding: 20px;
+      background: linear-gradient(to right, #4CAF50, #81C784);
+      color: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    .ticket .details {
-      text-align: left;
-      margin-top: 20px;
+    .header img {
+      width: 80px;
     }
 
-    .wedding {
-      border: 5px solid pink;
+    .header h1 {
+      margin: 10px 0 0;
     }
 
-    .conference {
-      border: 5px solid steelblue;
+    .header p {
+      font-style: italic;
+      margin-top: 5px;
     }
 
-    .party {
-      border: 5px solid orange;
+    .ticket-box {
+      width: 90%;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 25px;
+      border: 3px dashed #4CAF50;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
-    .loading {
-      text-align: center;
-      color: #888;
+    .ticket-box h2 {
+      margin-top: 0;
+      color: #333;
+      font-size: 22px;
+    }
+
+    .ticket-box p {
+      font-size: 16px;
+      color: #444;
+      margin: 10px 0;
+    }
+
+    .ticket-box strong {
+      color: #000;
     }
   </style>
 </head>
-<body>
+<body onload="displayTicket()">
 
-<div class="ticket" id="ticketBox">
-  <div class="loading">Loading ticket...</div>
-</div>
+  <div class="header">
+    <img src="logo.png" alt="EventEase Logo">
+    <h1>EventEase</h1>
+    <p>Your Event, Made Effortless</p>
+  </div>
 
-<script>
-  function getQueryParams() {
-    const params = new URLSearchParams(window.location.search);
-    return {
-      fullName: params.get("fullName"),
-      eventType: params.get("eventType"),
-      venue: params.get("venue"),
-      date: params.get("date"),
-      health: params.get("health")
-    };
-  }
+  <div class="ticket-box" id="ticketDetails">
+    <h2>Loading your ticket...</h2>
+  </div>
 
-  const ticket = getQueryParams();
-  const ticketBox = document.getElementById("ticketBox");
+  <script>
+    function displayTicket() {
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get("fullname");
+      const health = params.get("health") || "None";
 
-  if (ticket.fullName && ticket.eventType && ticket.venue && ticket.date) {
-    let borderClass = '';
-    if (ticket.eventType === "Wedding") borderClass = 'wedding';
-    else if (ticket.eventType === "Conference") borderClass = 'conference';
-    else if (ticket.eventType === "Party") borderClass = 'party';
-
-    ticketBox.className = ticket ${borderClass};
-    ticketBox.innerHTML = `
-      <h2>Your ${ticket.eventType} Ticket</h2>
-      <p><strong>Name:</strong> ${ticket.fullName}</p>
-      <p><strong>Venue:</strong> ${ticket.venue}</p>
-      <p><strong>Date:</strong> ${ticket.date}</p>
-      <p><strong>Health Condition:</strong> ${ticket.health || 'None'}</p>
-      <p style="margin-top: 20px; font-weight: bold; color: green;">🎟 This ticket has been processed successfully!</p>
-    `;
-  } else {
-    ticketBox.innerHTML = <div class="loading">Ticket details are missing. Go back and register again.</div>;
-  }
-</script>
+      const ticketHTML = `
+        <h2>🎟 Entry Ticket</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Health Condition:</strong> ${health}</p>
+        <p><strong>Status:</strong> Successfully Registered</p>
+        <p>✅ Show this ticket at the entrance.</p>
+      `;
+      document.getElementById("ticketDetails").innerHTML = ticketHTML;
+    }
+  </script>
 
 </body>
 </html>
